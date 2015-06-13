@@ -13,7 +13,7 @@ namespace com.xamarin.component.MaterialDrawer.Models
     private int _descriptionRes = -1;
 
     private string _badge;
-    private Color _badgeTextColor = Color.Black;
+    private Color _badgeTextColor = Color.Transparent;
 
     public PrimaryDrawerItem WithDescription(string description) 
     {

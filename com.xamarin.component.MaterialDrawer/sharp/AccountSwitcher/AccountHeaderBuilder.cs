@@ -1,19 +1,22 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using Android.App;
 using Android.Content;
 using Android.Graphics;
 using Android.Graphics.Drawables;
-using Android.Net;
 using Android.OS;
 using Android.Text;
 using Android.Views;
 using Android.Widget;
+using com.xamarin.AndroidIconics;
 using com.xamarin.component.MaterialDrawer.Models.Interfaces;
 using com.xamarin.component.MaterialDrawer.Utils;
 using com.xamarin.component.MaterialDrawer.Views;
 using Java.Lang;
 using Java.Util;
+using System.Collections.Generic;
+using Object = Java.Lang.Object;
+using Uri = Android.Net.Uri;
 
 namespace com.xamarin.component.MaterialDrawer.AccountSwitcher
 {
@@ -162,7 +165,7 @@ namespace com.xamarin.component.MaterialDrawer.AccountSwitcher
     }
 
     //the background color for the slider
-    protected Color mTextColor = Color.Black;
+    protected Color mTextColor = Color.Transparent;
     protected int mTextColorRes = -1;
 
     /// <summary>
@@ -366,7 +369,7 @@ namespace com.xamarin.component.MaterialDrawer.AccountSwitcher
     }
 
     // the onAccountHeaderSelectionListener to set
-    protected AccountHeader.IOnAccountHeaderSelectionViewClickListener mOnAccountHeaderSelectionViewClickListener;
+    private AccountHeader.IOnAccountHeaderSelectionViewClickListener mOnAccountHeaderSelectionViewClickListener;
 
     /// <summary>
     /// set a onSelection listener for the selection box
@@ -577,13 +580,17 @@ namespace com.xamarin.component.MaterialDrawer.AccountSwitcher
         {
           ((FrameLayout) mAccountHeaderContainer).Foreground = UIUtils.GetCompatDrawable(
             mAccountHeaderContainer.Context, mAccountHeaderTextSectionBackgroundResource);
-          mAccountHeaderContainer.SetOnClickListener(onSelectionClickListener);
+          //todo: wdcossey
+          mAccountHeaderContainer.Click += AccountHeaderContainerOnClick;
+          //mAccountHeaderContainer.SetOnClickListener(onSelectionClickListener);
           mAccountHeaderContainer.SetTag(Resource.Id.profile_header, (Object) profile);
         }
         else
         {
           mAccountHeaderTextSection.SetBackgroundResource(mAccountHeaderTextSectionBackgroundResource);
-          mAccountHeaderTextSection.SetOnClickListener(onSelectionClickListener);
+          //todo: wdcossey
+          mAccountHeaderTextSection.Click += AccountHeaderContainerOnClick;
+          //mAccountHeaderTextSection.SetOnClickListener(onSelectionClickListener);
           mAccountHeaderTextSection.SetTag(Resource.Id.profile_header, (Object) profile);
         }
       }
@@ -599,6 +606,20 @@ namespace com.xamarin.component.MaterialDrawer.AccountSwitcher
           UIUtils.SetBackground(mAccountHeaderTextSection, null);
           mAccountHeaderTextSection.SetOnClickListener(null);
         }
+      }
+    }
+
+    private void AccountHeaderContainerOnClick(object sender, EventArgs eventArgs)
+    {
+      bool consumed = false;
+      if (mOnAccountHeaderSelectionViewClickListener != null)
+      {
+        consumed = mOnAccountHeaderSelectionViewClickListener.OnClick((View)sender, (IProfile)((View)sender).GetTag(Resource.Id.profile_header));
+      }
+
+      if (mAccountSwitcherArrow.Visibility == ViewStates.Visible && !consumed)
+      {
+        ToggleSelectionList(((View)sender).Context);
       }
     }
 
@@ -626,7 +647,7 @@ namespace com.xamarin.component.MaterialDrawer.AccountSwitcher
       }
       else if (mHeightDp != -1)
       {
-        height = Utils.convertDpToPx(mActivity, mHeightDp);
+        height = mActivity.ConvertDpToPx(mHeightDp);
       }
       else if (mHeightRes != -1)
       {
@@ -717,9 +738,9 @@ namespace com.xamarin.component.MaterialDrawer.AccountSwitcher
       mAccountSwitcherArrow =
         (ImageView) mAccountHeaderContainer.FindViewById(Resource.Id.account_header_drawer_text_switcher);
       mAccountSwitcherArrow.SetImageDrawable(
-        new IconicsDrawable(mActivity, GoogleMaterial.Icon.gmd_arrow_drop_down).sizeDp(24)
-          .paddingDp(6)
-          .color(mTextColor));
+        new IconicsDrawable<GoogleMaterial>(mActivity, GoogleMaterial.Icon.gmd_arrow_drop_down).SizeDp(24)
+          .PaddingDp(6)
+          .Color(mTextColor));
 
       //get the fields for the name
       mCurrentProfileView = (BezelImageView) mAccountHeader.FindViewById(Resource.Id.account_header_drawer_current);
@@ -866,20 +887,20 @@ namespace com.xamarin.component.MaterialDrawer.AccountSwitcher
         {
           activeProfiles.Push(newActiveProfiles[i]);
         }
-        else if (!unusedProfiles.isEmpty())
+        else if (unusedProfiles.Any())
         {
           activeProfiles.Push(unusedProfiles.Pop());
         }
       }
 
       Stack<IProfile> reversedActiveProfiles = new Stack<IProfile>();
-      while (!activeProfiles.empty())
+      while (activeProfiles.Any())
       {
         reversedActiveProfiles.Push(activeProfiles.Pop());
       }
 
       // reassign active profiles
-      if (reversedActiveProfiles.isEmpty())
+      if (!reversedActiveProfiles.Any())
       {
         mCurrentProfile = null;
       }
@@ -887,7 +908,7 @@ namespace com.xamarin.component.MaterialDrawer.AccountSwitcher
       {
         mCurrentProfile = reversedActiveProfiles.Pop();
       }
-      if (reversedActiveProfiles.isEmpty())
+      if (!reversedActiveProfiles.Any())
       {
         mProfileFirst = null;
       }
@@ -895,7 +916,7 @@ namespace com.xamarin.component.MaterialDrawer.AccountSwitcher
       {
         mProfileFirst = reversedActiveProfiles.Pop();
       }
-      if (reversedActiveProfiles.isEmpty())
+      if (!reversedActiveProfiles.Any())
       {
         mProfileSecond = null;
       }
@@ -903,7 +924,7 @@ namespace com.xamarin.component.MaterialDrawer.AccountSwitcher
       {
         mProfileSecond = reversedActiveProfiles.Pop();
       }
-      if (reversedActiveProfiles.isEmpty())
+      if (!reversedActiveProfiles.Any())
       {
         mProfileThird = null;
       }
@@ -1037,7 +1058,9 @@ namespace com.xamarin.component.MaterialDrawer.AccountSwitcher
             mCurrentProfile.GetIconUri());
           if (mProfileImagesClickable)
           {
-            mCurrentProfileView.SetOnClickListener(onProfileClickListener);
+            //todo: wdcossey
+            mCurrentProfileView.Click += ProfileOnClick;
+            //mCurrentProfileView.SetOnClickListener(onProfileClickListener);
             mCurrentProfileView.DisableTouchFeedback(false);
           }
           else
@@ -1065,7 +1088,9 @@ namespace com.xamarin.component.MaterialDrawer.AccountSwitcher
           mProfileFirstView.SetTag(Resource.Id.profile_header, (Object) mProfileFirst);
           if (mProfileImagesClickable)
           {
-            mProfileFirstView.SetOnClickListener(onProfileClickListener);
+            //todo: wdcossey
+            mProfileFirstView.Click += ProfileOnClick;
+            //mProfileFirstView.SetOnClickListener(onProfileClickListener);
             mProfileFirstView.DisableTouchFeedback(false);
           }
           else
@@ -1081,7 +1106,9 @@ namespace com.xamarin.component.MaterialDrawer.AccountSwitcher
           mProfileSecondView.SetTag(Resource.Id.profile_header, (Object) mProfileSecond);
           if (mProfileImagesClickable)
           {
-            mProfileSecondView.SetOnClickListener(onProfileClickListener);
+            //todo: wdcossey
+            mProfileSecondView.Click += ProfileOnClick;
+            //mProfileSecondView.SetOnClickListener(onProfileClickListener);
             mProfileSecondView.DisableTouchFeedback(false);
           }
           else
@@ -1102,7 +1129,9 @@ namespace com.xamarin.component.MaterialDrawer.AccountSwitcher
           mProfileThirdView.SetTag(Resource.Id.profile_header, (Object) mProfileThird);
           if (mProfileImagesClickable)
           {
-            mProfileThirdView.SetOnClickListener(onProfileClickListener);
+            //todo: wdcossey
+            mProfileThirdView.Click += ProfileOnClick;
+            //mProfileThirdView.SetOnClickListener(onProfileClickListener);
             mProfileThirdView.DisableTouchFeedback(false);
           }
           else
@@ -1164,6 +1193,11 @@ namespace com.xamarin.component.MaterialDrawer.AccountSwitcher
       {
         HandleSelectionView(mCurrentProfile, true);
       }
+    }
+
+    private void ProfileOnClick(object sender, EventArgs eventArgs)
+    {
+      OnProfileClick((View)sender, true);
     }
 
     /// <summary>
@@ -1318,7 +1352,7 @@ namespace com.xamarin.component.MaterialDrawer.AccountSwitcher
 
           // update the arrow image within the drawer
           mAccountSwitcherArrow.SetImageDrawable(
-            new IconicsDrawable(ctx, GoogleMaterial.Icon.gmd_arrow_drop_up).sizeDp(24).paddingDp(6).color(mTextColor));
+            new IconicsDrawable<GoogleMaterial>(ctx, GoogleMaterial.Icon.gmd_arrow_drop_up).SizeDp(24).PaddingDp(6).Color(mTextColor));
           mSelectionListShown = true;
         }
       }
@@ -1354,7 +1388,8 @@ namespace com.xamarin.component.MaterialDrawer.AccountSwitcher
           position = position + 1;
         }
       }
-      mDrawer.SwitchDrawerContent(onDrawerItemClickListener, profileDrawerItems, selectedPosition);
+      //todo: wdcossey
+      //mDrawer.SwitchDrawerContent(onDrawerItemClickListener, profileDrawerItems, selectedPosition);
     }
 
     //todo: wdcossey
@@ -1399,7 +1434,7 @@ namespace com.xamarin.component.MaterialDrawer.AccountSwitcher
     {
       mDrawer.ResetDrawerContent();
       mAccountSwitcherArrow.SetImageDrawable(
-        new IconicsDrawable(ctx, GoogleMaterial.Icon.gmd_arrow_drop_down).sizeDp(24).paddingDp(6).color(mTextColor));
+        new IconicsDrawable<GoogleMaterial>(ctx, GoogleMaterial.Icon.gmd_arrow_drop_down).SizeDp(24).PaddingDp(6).Color(mTextColor));
     }
 
     /// <summary>
@@ -1418,5 +1453,4 @@ namespace com.xamarin.component.MaterialDrawer.AccountSwitcher
       }
     }
   }
-
 }

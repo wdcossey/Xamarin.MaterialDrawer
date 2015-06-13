@@ -8,7 +8,7 @@ using Java.Lang;
 
 namespace com.xamarin.component.MaterialDrawer.Models
 {
-  public class SectionDrawerItem : IDrawerItem, INameable<SectionDrawerItem>, ITagable<SectionDrawerItem>,
+  public class SectionDrawerItem : Object, IDrawerItem, INameable<SectionDrawerItem>, ITagable<SectionDrawerItem>,
     ITypefaceable<SectionDrawerItem>
   {
     private int _identifier = -1;
@@ -18,7 +18,7 @@ namespace com.xamarin.component.MaterialDrawer.Models
     private bool _divider = true;
     private Object _tag;
 
-    private Color _textColor = Color.Black;
+    private Color _textColor = Color.Transparent;
     private int _textColorRes = -1;
 
     private Typeface _typeface;

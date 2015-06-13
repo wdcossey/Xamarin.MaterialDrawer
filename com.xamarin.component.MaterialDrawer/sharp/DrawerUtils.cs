@@ -332,23 +332,24 @@ namespace com.xamarin.component.MaterialDrawer
           ((LinearLayout) drawer.StickyFooterView).RemoveAllViews();
         }
 
+        //todo: wdcossey
         //handle the footer
-        DrawerUtils.FillStickyDrawerItemFooter(
-          drawer, 
-          drawer.StickyFooterView, 
-          new View.OnClickListener()
-        {
-          @Override
-        public void onClick(View v) {
-  IDrawerItem drawerItem = (IDrawerItem) v.getTag();
-  DrawerUtils.onFooterDrawerItemClick(drawer,
-          drawerItem,
-          v,
-          true);
-        }
-      }
-      )
-        ;
+  //      DrawerUtils.FillStickyDrawerItemFooter(
+  //        drawer, 
+  //        drawer.StickyFooterView, 
+  //        new View.OnClickListener()
+  //      {
+  //        @Override
+  //      public void onClick(View v) {
+  //IDrawerItem drawerItem = (IDrawerItem) v.getTag();
+  //DrawerUtils.onFooterDrawerItemClick(drawer,
+  //        drawerItem,
+  //        v,
+  //        true);
+  //      }
+  //    }
+  //    )
+  //      ;
 
         SetFooterSelection(drawer, drawer.CurrentFooterSelection, false);
       }

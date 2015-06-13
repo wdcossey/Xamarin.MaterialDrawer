@@ -11,7 +11,7 @@ namespace com.xamarin.component.MaterialDrawer.Utils
   http://stackoverflow.com/users/2075875/malachiasz
 */
 
-  [SuppressLint(Value = new[] {"InlinedApi"})]
+  //[SuppressLint(Value = new[] {"InlinedApi"})]
   public sealed class PressedEffectStateListDrawable : StateListDrawable
   {
 

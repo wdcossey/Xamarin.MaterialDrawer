@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Android.App;
 using Android.Graphics;
@@ -8,6 +9,7 @@ using Android.Support.V4.Widget;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
+using com.xamarin.AndroidIconics.Typefaces;
 using com.xamarin.component.MaterialDrawer.Adapters;
 using com.xamarin.component.MaterialDrawer.Models.Interfaces;
 using com.xamarin.component.MaterialDrawer.Utils;
@@ -52,7 +54,7 @@ namespace com.xamarin.component.MaterialDrawer
     /// <returns></returns>
     public DrawerLayout GetDrawerLayout()
     {
-      return _drawerBuilder.DrawerLayout;
+      return _drawerBuilder._drawerLayout;
     }
 
     /// <summary>
@@ -60,15 +62,15 @@ namespace com.xamarin.component.MaterialDrawer
     /// </summary>
     public void OpenDrawer()
     {
-      if (_drawerBuilder.DrawerLayout != null && _drawerBuilder.SliderLayout != null)
+      if (_drawerBuilder._drawerLayout != null && _drawerBuilder.SliderLayout != null)
       {
         if (_drawerBuilder.DrawerGravity != null)
         {
-          _drawerBuilder.DrawerLayout.OpenDrawer(_drawerBuilder.DrawerGravity.Value);
+          _drawerBuilder._drawerLayout.OpenDrawer(_drawerBuilder.DrawerGravity.Value);
         }
         else
         {
-          _drawerBuilder.DrawerLayout.OpenDrawer(_drawerBuilder.SliderLayout);
+          _drawerBuilder._drawerLayout.OpenDrawer(_drawerBuilder.SliderLayout);
         }
       }
     }
@@ -78,15 +80,15 @@ namespace com.xamarin.component.MaterialDrawer
     /// </summary>
     public void CloseDrawer()
     {
-      if (_drawerBuilder.DrawerLayout != null)
+      if (_drawerBuilder._drawerLayout != null)
       {
         if (_drawerBuilder.DrawerGravity != null)
         {
-          _drawerBuilder.DrawerLayout.CloseDrawer(_drawerBuilder.DrawerGravity.Value);
+          _drawerBuilder._drawerLayout.CloseDrawer(_drawerBuilder.DrawerGravity.Value);
         }
         else
         {
-          _drawerBuilder.DrawerLayout.CloseDrawer(_drawerBuilder.SliderLayout);
+          _drawerBuilder._drawerLayout.CloseDrawer(_drawerBuilder.SliderLayout);
         }
       }
     }
@@ -98,9 +100,9 @@ namespace com.xamarin.component.MaterialDrawer
     /// <returns></returns>
     public bool IsDrawerOpen()
     {
-      if (_drawerBuilder.DrawerLayout != null && _drawerBuilder.SliderLayout != null)
+      if (_drawerBuilder._drawerLayout != null && _drawerBuilder.SliderLayout != null)
       {
-        return _drawerBuilder.DrawerLayout.IsDrawerOpen(_drawerBuilder.SliderLayout);
+        return _drawerBuilder._drawerLayout.IsDrawerOpen(_drawerBuilder.SliderLayout);
       }
       return false;
     }
@@ -174,9 +176,9 @@ namespace com.xamarin.component.MaterialDrawer
     /// <returns></returns>
     public FrameLayout GetContent()
     {
-      if (_contentView == null && _drawerBuilder.DrawerLayout != null)
+      if (_contentView == null && _drawerBuilder._drawerLayout != null)
       {
-        _contentView = (FrameLayout)_drawerBuilder.DrawerLayout.FindViewById(Resource.Id.content_layout);
+        _contentView = (FrameLayout)_drawerBuilder._drawerLayout.FindViewById(Resource.Id.content_layout);
       }
       return _contentView;
     }
@@ -964,7 +966,7 @@ namespace com.xamarin.component.MaterialDrawer
     //  public IDrawerItem DrawerItem;
     //}
 
-    //public abstract EventHandler<DrawerItemClickEventArgs> DrawerItemClickEvent();
+    //public static EventHandler<DrawerItemClickEventArgs> DrawerItemClickEvent;
 
     public interface IOnDrawerItemLongClickListener
     {

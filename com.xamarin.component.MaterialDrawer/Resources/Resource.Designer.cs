@@ -205,11 +205,11 @@ namespace com.xamarin.component.MaterialDrawer
 			// aapt resource value: 0x7f01002b
 			public static int barSize = 2130772011;
 			
-			// aapt resource value: 0x7f0100d3
-			public static int biv_maskDrawable = 2130772179;
+			// aapt resource value: 0x7f0100d5
+			public static int biv_maskDrawable = 2130772181;
 			
-			// aapt resource value: 0x7f0100d4
-			public static int biv_selectorOnPress = 2130772180;
+			// aapt resource value: 0x7f0100d6
+			public static int biv_selectorOnPress = 2130772182;
 			
 			// aapt resource value: 0x7f01007f
 			public static int buttonBarButtonStyle = 2130772095;
@@ -373,6 +373,12 @@ namespace com.xamarin.component.MaterialDrawer
 			// aapt resource value: 0x7f010038
 			public static int iconifiedByDefault = 2130772024;
 			
+			// aapt resource value: 0x7f0100c8
+			public static int iiv_color = 2130772168;
+			
+			// aapt resource value: 0x7f0100c7
+			public static int iiv_icon = 2130772167;
+			
 			// aapt resource value: 0x7f010012
 			public static int indeterminateProgressStyle = 2130771986;
 			
@@ -421,38 +427,38 @@ namespace com.xamarin.component.MaterialDrawer
 			// aapt resource value: 0x7f01000a
 			public static int logo = 2130771978;
 			
-			// aapt resource value: 0x7f0100c8
-			public static int material_drawer_background = 2130772168;
-			
-			// aapt resource value: 0x7f0100ce
-			public static int material_drawer_divider = 2130772174;
-			
-			// aapt resource value: 0x7f0100d1
-			public static int material_drawer_header_selection_text = 2130772177;
-			
-			// aapt resource value: 0x7f0100cd
-			public static int material_drawer_hint_text = 2130772173;
-			
-			// aapt resource value: 0x7f0100c9
-			public static int material_drawer_icons = 2130772169;
-			
-			// aapt resource value: 0x7f0100cb
-			public static int material_drawer_primary_icon = 2130772171;
-			
 			// aapt resource value: 0x7f0100ca
-			public static int material_drawer_primary_text = 2130772170;
-			
-			// aapt resource value: 0x7f0100cc
-			public static int material_drawer_secondary_text = 2130772172;
-			
-			// aapt resource value: 0x7f0100cf
-			public static int material_drawer_selected = 2130772175;
+			public static int material_drawer_background = 2130772170;
 			
 			// aapt resource value: 0x7f0100d0
-			public static int material_drawer_selected_text = 2130772176;
+			public static int material_drawer_divider = 2130772176;
 			
-			// aapt resource value: 0x7f0100c7
-			public static int material_drawer_window_background = 2130772167;
+			// aapt resource value: 0x7f0100d3
+			public static int material_drawer_header_selection_text = 2130772179;
+			
+			// aapt resource value: 0x7f0100cf
+			public static int material_drawer_hint_text = 2130772175;
+			
+			// aapt resource value: 0x7f0100cb
+			public static int material_drawer_icons = 2130772171;
+			
+			// aapt resource value: 0x7f0100cd
+			public static int material_drawer_primary_icon = 2130772173;
+			
+			// aapt resource value: 0x7f0100cc
+			public static int material_drawer_primary_text = 2130772172;
+			
+			// aapt resource value: 0x7f0100ce
+			public static int material_drawer_secondary_text = 2130772174;
+			
+			// aapt resource value: 0x7f0100d1
+			public static int material_drawer_selected = 2130772177;
+			
+			// aapt resource value: 0x7f0100d2
+			public static int material_drawer_selected_text = 2130772178;
+			
+			// aapt resource value: 0x7f0100c9
+			public static int material_drawer_window_background = 2130772169;
 			
 			// aapt resource value: 0x7f0100bd
 			public static int maxButtonHeight = 2130772157;
@@ -556,8 +562,8 @@ namespace com.xamarin.component.MaterialDrawer
 			// aapt resource value: 0x7f010022
 			public static int singleChoiceItemLayout = 2130772002;
 			
-			// aapt resource value: 0x7f0100d2
-			public static int siv_insetForeground = 2130772178;
+			// aapt resource value: 0x7f0100d4
+			public static int siv_insetForeground = 2130772180;
 			
 			// aapt resource value: 0x7f010026
 			public static int spinBars = 2130772006;
@@ -2898,47 +2904,86 @@ namespace com.xamarin.component.MaterialDrawer
 			// aapt resource value: 0x7f0a0010
 			public static int abc_toolbar_collapse_description = 2131361808;
 			
+			// aapt resource value: 0x7f0a001d
+			public static int app_name = 2131361821;
+			
 			// aapt resource value: 0x7f0a0011
-			public static int define_materialdrawer = 2131361809;
+			public static int define_AndroidIconics = 2131361809;
 			
 			// aapt resource value: 0x7f0a001e
-			public static int drawer_close = 2131361822;
+			public static int define_materialdrawer = 2131361822;
 			
-			// aapt resource value: 0x7f0a001d
-			public static int drawer_open = 2131361821;
+			// aapt resource value: 0x7f0a002b
+			public static int drawer_close = 2131361835;
+			
+			// aapt resource value: 0x7f0a002a
+			public static int drawer_open = 2131361834;
 			
 			// aapt resource value: 0x7f0a0012
-			public static int library_materialdrawer_author = 2131361810;
+			public static int library_AndroidIconics_author = 2131361810;
 			
 			// aapt resource value: 0x7f0a0013
-			public static int library_materialdrawer_authorWebsite = 2131361811;
+			public static int library_AndroidIconics_authorWebsite = 2131361811;
 			
 			// aapt resource value: 0x7f0a0019
-			public static int library_materialdrawer_isOpenSource = 2131361817;
+			public static int library_AndroidIconics_isOpenSource = 2131361817;
 			
 			// aapt resource value: 0x7f0a0015
-			public static int library_materialdrawer_libraryDescription = 2131361813;
+			public static int library_AndroidIconics_libraryDescription = 2131361813;
 			
 			// aapt resource value: 0x7f0a0014
-			public static int library_materialdrawer_libraryName = 2131361812;
+			public static int library_AndroidIconics_libraryName = 2131361812;
 			
 			// aapt resource value: 0x7f0a0016
-			public static int library_materialdrawer_libraryVersion = 2131361814;
+			public static int library_AndroidIconics_libraryVersion = 2131361814;
 			
 			// aapt resource value: 0x7f0a0017
-			public static int library_materialdrawer_libraryWebsite = 2131361815;
+			public static int library_AndroidIconics_libraryWebsite = 2131361815;
 			
 			// aapt resource value: 0x7f0a0018
-			public static int library_materialdrawer_licenseId = 2131361816;
+			public static int library_AndroidIconics_licenseId = 2131361816;
 			
 			// aapt resource value: 0x7f0a001b
-			public static int library_materialdrawer_owner = 2131361819;
+			public static int library_AndroidIconics_owner = 2131361819;
 			
 			// aapt resource value: 0x7f0a001a
-			public static int library_materialdrawer_repositoryLink = 2131361818;
+			public static int library_AndroidIconics_repositoryLink = 2131361818;
 			
 			// aapt resource value: 0x7f0a001c
-			public static int library_materialdrawer_year = 2131361820;
+			public static int library_AndroidIconics_year = 2131361820;
+			
+			// aapt resource value: 0x7f0a001f
+			public static int library_materialdrawer_author = 2131361823;
+			
+			// aapt resource value: 0x7f0a0020
+			public static int library_materialdrawer_authorWebsite = 2131361824;
+			
+			// aapt resource value: 0x7f0a0026
+			public static int library_materialdrawer_isOpenSource = 2131361830;
+			
+			// aapt resource value: 0x7f0a0022
+			public static int library_materialdrawer_libraryDescription = 2131361826;
+			
+			// aapt resource value: 0x7f0a0021
+			public static int library_materialdrawer_libraryName = 2131361825;
+			
+			// aapt resource value: 0x7f0a0023
+			public static int library_materialdrawer_libraryVersion = 2131361827;
+			
+			// aapt resource value: 0x7f0a0024
+			public static int library_materialdrawer_libraryWebsite = 2131361828;
+			
+			// aapt resource value: 0x7f0a0025
+			public static int library_materialdrawer_licenseId = 2131361829;
+			
+			// aapt resource value: 0x7f0a0028
+			public static int library_materialdrawer_owner = 2131361832;
+			
+			// aapt resource value: 0x7f0a0027
+			public static int library_materialdrawer_repositoryLink = 2131361831;
+			
+			// aapt resource value: 0x7f0a0029
+			public static int library_materialdrawer_year = 2131361833;
 			
 			static String()
 			{
@@ -4087,8 +4132,8 @@ namespace com.xamarin.component.MaterialDrawer
 			public static int AppCompatTextView_textAllCaps = 1;
 			
 			public static int[] BezelImageView = new int[] {
-					2130772179,
-					2130772180};
+					2130772181,
+					2130772182};
 			
 			// aapt resource value: 0
 			public static int BezelImageView_biv_maskDrawable = 0;
@@ -4129,6 +4174,16 @@ namespace com.xamarin.component.MaterialDrawer
 			
 			// aapt resource value: 4
 			public static int DrawerArrowToggle_topBottomBarArrowSize = 4;
+			
+			public static int[] IconicsImageView = new int[] {
+					2130772167,
+					2130772168};
+			
+			// aapt resource value: 1
+			public static int IconicsImageView_iiv_color = 1;
+			
+			// aapt resource value: 0
+			public static int IconicsImageView_iiv_icon = 0;
 			
 			public static int[] LinearLayoutCompat = new int[] {
 					16842927,
@@ -4197,8 +4252,6 @@ namespace com.xamarin.component.MaterialDrawer
 			public static int ListPopupWindow_android_dropDownVerticalOffset = 1;
 			
 			public static int[] MaterialDrawer = new int[] {
-					2130772167,
-					2130772168,
 					2130772169,
 					2130772170,
 					2130772171,
@@ -4207,7 +4260,9 @@ namespace com.xamarin.component.MaterialDrawer
 					2130772174,
 					2130772175,
 					2130772176,
-					2130772177};
+					2130772177,
+					2130772178,
+					2130772179};
 			
 			// aapt resource value: 1
 			public static int MaterialDrawer_material_drawer_background = 1;
@@ -4389,7 +4444,7 @@ namespace com.xamarin.component.MaterialDrawer
 			public static int PopupWindowBackgroundState_state_above_anchor = 0;
 			
 			public static int[] ScrimInsetsView = new int[] {
-					2130772178};
+					2130772180};
 			
 			// aapt resource value: 0
 			public static int ScrimInsetsView_siv_insetForeground = 0;

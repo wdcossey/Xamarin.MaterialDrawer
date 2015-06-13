@@ -1,4 +1,5 @@
 using Android.Graphics.Drawables;
+using com.xamarin.AndroidIconics.Typefaces;
 
 namespace com.xamarin.component.MaterialDrawer.Models.Interfaces
 {

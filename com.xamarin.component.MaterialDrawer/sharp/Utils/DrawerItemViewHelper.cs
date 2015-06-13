@@ -88,6 +88,13 @@ namespace com.xamarin.component.MaterialDrawer.Utils
         {
           view.SetBackgroundResource(UIUtils.GetSelectableBackground(_context));
           //todo: wdcossey
+          view.Click += (sender, args) =>
+          {
+            if (_onDrawerItemClickListener != null)
+            {
+              _onDrawerItemClickListener.OnItemClick((View)sender, (IDrawerItem)((View)sender).Tag);
+            }
+          };
           //view.setOnClickListener(new View.OnClickListener() {
           //    @Override
           //    public void onClick(View v) {

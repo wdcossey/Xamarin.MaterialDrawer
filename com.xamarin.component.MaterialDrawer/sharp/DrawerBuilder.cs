@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Android.App;
 using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Preferences;
-using Android.Support.V4.Widget;
+using Android.Runtime;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
@@ -14,9 +15,11 @@ using com.xamarin.component.MaterialDrawer.Adapters;
 using com.xamarin.component.MaterialDrawer.Models.Interfaces;
 using com.xamarin.component.MaterialDrawer.Utils;
 using com.xamarin.component.MaterialDrawer.Views;
+using com.xamarin.AndroidIconics;
 using Java.Lang;
 using ICheckable = com.xamarin.component.MaterialDrawer.Models.Interfaces.ICheckable;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
+using Android.Support.V4.Widget;
 
 namespace com.xamarin.component.MaterialDrawer
 {
@@ -330,7 +333,7 @@ namespace com.xamarin.component.MaterialDrawer
     /// <summary>
     /// the drawerLayout to use
     /// </summary>
-    protected internal DrawerLayout DrawerLayout { get; private set; }
+    protected internal DrawerLayout _drawerLayout = null;
 
     protected internal RelativeLayout SliderLayout { get; private set; }
 
@@ -342,7 +345,7 @@ namespace com.xamarin.component.MaterialDrawer
     /// <returns></returns>
     public DrawerBuilder WithDrawerLayout(DrawerLayout drawerLayout)
     {
-      DrawerLayout = drawerLayout;
+      _drawerLayout = drawerLayout;
       return this;
     }
 
@@ -361,19 +364,18 @@ namespace com.xamarin.component.MaterialDrawer
 
       if (resLayout != -1)
       {
-        DrawerLayout = (DrawerLayout) Activity.LayoutInflater.Inflate(resLayout, RootView, false);
+        _drawerLayout = Activity.LayoutInflater.Inflate(resLayout, RootView, false).JavaCast<DrawerLayout>();
       }
       else
       {
-        DrawerLayout =
-          (DrawerLayout) Activity.LayoutInflater.Inflate(Resource.Layout.material_drawer, RootView, false);
+        _drawerLayout = Activity.LayoutInflater.Inflate(Resource.Layout.material_drawer, RootView, false).JavaCast<DrawerLayout>();
       }
 
       return this;
     }
 
     //the statusBar color
-    protected Color mStatusBarColor = Color.Black;
+    protected Color mStatusBarColor = Color.Transparent;
     protected int mStatusBarColorRes = -1;
 
     /// <summary>
@@ -399,7 +401,7 @@ namespace com.xamarin.component.MaterialDrawer
     }
 
     //the background color for the slider
-    protected Color mSliderBackgroundColor = Color.Black;
+    protected Color mSliderBackgroundColor = Color.Transparent;
     protected int mSliderBackgroundColorRes = -1;
     protected Drawable mSliderBackgroundDrawable = null;
     protected int mSliderBackgroundDrawableRes = -1;
@@ -486,7 +488,7 @@ namespace com.xamarin.component.MaterialDrawer
         throw new RuntimeException("please pass an activity first to use this call");
       }
 
-      DrawerWidth = Utils.convertDpToPx(Activity, drawerWidthDp);
+      DrawerWidth = Activity.ConvertDpToPx(drawerWidthDp);
       return this;
     }
 
@@ -937,7 +939,7 @@ namespace com.xamarin.component.MaterialDrawer
     /// </summary>
     /// <param name="?"></param>
     /// <returns></returns>
-    public DrawerBuilder AddDrawerItems(IDrawerItem[] drawerItems)
+    public DrawerBuilder AddDrawerItems(params IDrawerItem[] drawerItems)
     {
       if (DrawerItems == null)
       {
@@ -971,7 +973,7 @@ namespace com.xamarin.component.MaterialDrawer
     /// </summary>
     /// <param name="stickyDrawerItems"></param>
     /// <returns></returns>
-    public DrawerBuilder AddStickyDrawerItems(IDrawerItem[] stickyDrawerItems)
+    public DrawerBuilder AddStickyDrawerItems(params IDrawerItem[] stickyDrawerItems)
     {
       if (mStickyDrawerItems == null)
       {
@@ -1123,7 +1125,7 @@ namespace com.xamarin.component.MaterialDrawer
     private void handleShowOnFirstLaunch()
     {
       //check if it should be shown on first launch (and we have a drawerLayout)
-      if (Activity != null && DrawerLayout != null && mShowDrawerOnFirstLaunch)
+      if (Activity != null && _drawerLayout != null && mShowDrawerOnFirstLaunch)
       {
         var preferences = PreferenceManager.GetDefaultSharedPreferences(Activity);
         //if it was not shown yet
@@ -1132,11 +1134,11 @@ namespace com.xamarin.component.MaterialDrawer
           //open the drawer
           if (DrawerGravity != null)
           {
-            DrawerLayout.OpenDrawer(DrawerGravity.Value);
+            _drawerLayout.OpenDrawer(DrawerGravity.Value);
           }
           else if (SliderLayout != null)
           {
-            DrawerLayout.OpenDrawer(SliderLayout);
+            _drawerLayout.OpenDrawer(SliderLayout);
           }
 
           //save that it showed up once ;)
@@ -1166,7 +1168,7 @@ namespace com.xamarin.component.MaterialDrawer
       _used = true;
 
       // if the user has not set a drawerLayout use the default one :D
-      if (DrawerLayout == null)
+      if (_drawerLayout == null)
       {
         WithDrawerLayout(-1);
       }
@@ -1183,7 +1185,7 @@ namespace com.xamarin.component.MaterialDrawer
       bool alreadyInflated = contentView is DrawerLayout;
 
       //get the drawer root
-      DrawerContentRoot = (ScrimInsetsFrameLayout) DrawerLayout.GetChildAt(0);
+      DrawerContentRoot = _drawerLayout.GetChildAt(0) as ScrimInsetsFrameLayout;
 
       //do some magic specific to the statusBar
       if (!alreadyInflated && TranslucentStatusBar)
@@ -1296,7 +1298,7 @@ namespace com.xamarin.component.MaterialDrawer
       DrawerContentRoot.AddView(contentView, layoutParamsContentView);
 
       //add the drawerLayout to the root
-      RootView.AddView(DrawerLayout, new ViewGroup.LayoutParams(
+      RootView.AddView(_drawerLayout, new ViewGroup.LayoutParams(
         ViewGroup.LayoutParams.MatchParent,
         ViewGroup.LayoutParams.MatchParent
         ));
@@ -1328,7 +1330,7 @@ namespace com.xamarin.component.MaterialDrawer
       // create the ActionBarDrawerToggle if not set and enabled and if we have a toolbar
       if (mActionBarDrawerToggleEnabled && ActionBarDrawerToggle == null && mToolbar != null)
       {
-        ActionBarDrawerToggle = new ActionBarDrawerToggle(Activity, DrawerLayout, mToolbar,
+        ActionBarDrawerToggle = new ActionBarDrawerToggle(Activity, _drawerLayout, mToolbar,
           Resource.String.drawer_open, Resource.String.drawer_close);
         //TODO: wdcossey
         //@Override
@@ -1369,19 +1371,21 @@ namespace com.xamarin.component.MaterialDrawer
       //we also have to do this after setting the ActionBarDrawerToggle as this will overwrite this
       if (mToolbar != null)
       {
-        mToolbar.SetNavigationOnClickListener(toolbarNavigationListener);
+        //todo: wdcossey
+        //mToolbar.SetNavigationOnClickListener(toolbarNavigationListener);
       }
 
       //handle the ActionBarDrawerToggle
       if (ActionBarDrawerToggle != null)
       {
-        ActionBarDrawerToggle.setToolbarNavigationClickListener(toolbarNavigationListener);
-        DrawerLayout.SetDrawerListener(ActionBarDrawerToggle);
+        //todo: wdcossey
+        //ActionBarDrawerToggle.setToolbarNavigationClickListener(toolbarNavigationListener);
+        _drawerLayout.SetDrawerListener(ActionBarDrawerToggle);
       }
       else
       {
 
-        DrawerLayout.DrawerSlide += delegate(object sender, DrawerLayout.DrawerSlideEventArgs args)
+        _drawerLayout.DrawerSlide += delegate(object sender, DrawerLayout.DrawerSlideEventArgs args)
         {
           if (mOnDrawerListener != null)
           {
@@ -1389,7 +1393,7 @@ namespace com.xamarin.component.MaterialDrawer
           }
         };
 
-        DrawerLayout.DrawerOpened += delegate(object sender, DrawerLayout.DrawerOpenedEventArgs args)
+        _drawerLayout.DrawerOpened += delegate(object sender, DrawerLayout.DrawerOpenedEventArgs args)
         {
           if (mOnDrawerListener != null)
           {
@@ -1397,7 +1401,7 @@ namespace com.xamarin.component.MaterialDrawer
           }
         };
 
-        DrawerLayout.DrawerClosed += delegate(object sender, DrawerLayout.DrawerClosedEventArgs args)
+        _drawerLayout.DrawerClosed += delegate(object sender, DrawerLayout.DrawerClosedEventArgs args)
         {
           if (mOnDrawerListener != null)
           {
@@ -1406,7 +1410,7 @@ namespace com.xamarin.component.MaterialDrawer
         };
 
 
-        DrawerLayout.DrawerStateChanged += delegate(object sender, DrawerLayout.DrawerStateChangedEventArgs args)
+        _drawerLayout.DrawerStateChanged += delegate(object sender, DrawerLayout.DrawerStateChangedEventArgs args)
         {
 
         };
@@ -1416,7 +1420,7 @@ namespace com.xamarin.component.MaterialDrawer
       Drawer result = BuildView();
 
       // add the slider to the drawer
-      DrawerLayout.AddView(SliderLayout, 1);
+      _drawerLayout.AddView(SliderLayout, 1);
 
       return result;
     }
@@ -1429,11 +1433,11 @@ namespace com.xamarin.component.MaterialDrawer
     {
       // get the slider view
       SliderLayout =
-        (RelativeLayout) Activity.LayoutInflater.Inflate(Resource.Layout.material_drawer_slider, DrawerLayout, false);
+        (RelativeLayout)Activity.LayoutInflater.Inflate(Resource.Layout.material_drawer_slider, _drawerLayout, false);
       SliderLayout.SetBackgroundColor(UIUtils.GetThemeColorFromAttrOrRes(Activity,
         Resource.Attribute.material_drawer_background, Resource.Color.material_drawer_background));
       // get the layout params
-      DrawerLayout.LayoutParams @params = (DrawerLayout.LayoutParams) SliderLayout.LayoutParameters;
+      var @params = SliderLayout.LayoutParameters.JavaCast<DrawerLayout.LayoutParams>();
       if (@params != null)
       {
         // if we've set a custom gravity set it
@@ -1448,7 +1452,7 @@ namespace com.xamarin.component.MaterialDrawer
       }
 
       // set the background
-      if (mSliderBackgroundColor != 0)
+      if (mSliderBackgroundColor != Color.Transparent)
       {
         SliderLayout.SetBackgroundColor(mSliderBackgroundColor);
       }
@@ -1505,11 +1509,11 @@ namespace com.xamarin.component.MaterialDrawer
       _used = true;
 
       //get the drawer layout from the previous drawer
-      DrawerLayout = result.GetDrawerLayout();
+      _drawerLayout = result.GetDrawerLayout();
 
       // get the slider view
       SliderLayout =
-        (RelativeLayout) Activity.LayoutInflater.Inflate(Resource.Layout.material_drawer_slider, DrawerLayout, false);
+        (RelativeLayout)Activity.LayoutInflater.Inflate(Resource.Layout.material_drawer_slider, _drawerLayout, false);
       SliderLayout.SetBackgroundColor(UIUtils.GetThemeColorFromAttrOrRes(Activity,
         Resource.Attribute.material_drawer_background, Resource.Color.material_drawer_background));
       // get the layout params
@@ -1523,7 +1527,7 @@ namespace com.xamarin.component.MaterialDrawer
       // set the new params
       SliderLayout.LayoutParameters = @params;
       // add the slider to the drawer
-      DrawerLayout.AddView(SliderLayout, 1);
+      _drawerLayout.AddView(SliderLayout, 1);
 
       //create the content
       CreateContent();
@@ -1630,20 +1634,21 @@ namespace com.xamarin.component.MaterialDrawer
       //handle the header
       DrawerUtils.HandleHeaderView(this);
 
+      //todo: wdcossey
       //handle the footer
-      DrawerUtils.HandleFooterView(this, new View.OnClickListener()
-      {
-        @Override
-      public void onClick(View v) {
-  IDrawerItem drawerItem = (IDrawerItem) v.getTag();
-  DrawerUtils.onFooterDrawerItemClick(DrawerBuilder.this,
-        drawerItem,
-        v,
-        true);
-      }
-    }
-    )
-      ;
+  //    DrawerUtils.HandleFooterView(this, new View.OnClickListener()
+  //    {
+  //      @Override
+  //    public void onClick(View v) {
+  //IDrawerItem drawerItem = (IDrawerItem) v.getTag();
+  //DrawerUtils.onFooterDrawerItemClick(DrawerBuilder.this,
+  //      drawerItem,
+  //      v,
+  //      true);
+  //    }
+  //  }
+  //  )
+  //    ;
 
       //after adding the header do the setAdapter and set the selection
       if (Adapter != null)
@@ -1749,15 +1754,15 @@ namespace com.xamarin.component.MaterialDrawer
 
     protected internal void CloseDrawerDelayed()
     {
-      if (mCloseOnClick && DrawerLayout != null)
+      if (mCloseOnClick && _drawerLayout != null)
       {
         if (mDelayOnDrawerClose > -1)
         {
-          new Handler().PostDelayed(() => { DrawerLayout.CloseDrawers(); }, mDelayOnDrawerClose);
+          new Handler().PostDelayed(() => { _drawerLayout.CloseDrawers(); }, mDelayOnDrawerClose);
         }
         else
         {
-          DrawerLayout.CloseDrawers();
+          _drawerLayout.CloseDrawers();
         }
       }
     }
@@ -1800,14 +1805,14 @@ namespace com.xamarin.component.MaterialDrawer
     {
       if (includeOffset)
       {
-        if (mDrawerItems != null && mDrawerItems.Count > (position - HeaderOffset) && (position - HeaderOffset) > -1)
+        if (_drawerItems != null && _drawerItems.Count > (position - HeaderOffset) && (position - HeaderOffset) > -1)
         {
           return true;
         }
       }
       else
       {
-        if (mDrawerItems != null && mDrawerItems.Count > position && position > -1)
+        if (_drawerItems != null && _drawerItems.Count > position && position > -1)
         {
           return true;
         }

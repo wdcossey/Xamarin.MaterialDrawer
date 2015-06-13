@@ -14,8 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/material_drawer_account_header_height">
 
-        <com.mikepenz.materialdrawer.view.BezelImageView
-            android:id="@+id/account_header_drawer_current"
+      <com.xamarin.component.MaterialDrawer.Views.BezelImageView
+          android:id="@+id/account_header_drawer_current"
             android:layout_width="@dimen/material_drawer_account_header_selected"
             android:layout_height="@dimen/material_drawer_account_header_selected"
             android:layout_alignParentLeft="true"
@@ -30,8 +30,8 @@
             app:biv_maskDrawable="@drawable/circle_mask"
             app:biv_selectorOnPress="@color/material_drawer_primary" />
 
-        <com.mikepenz.materialdrawer.view.BezelImageView
-            android:id="@+id/account_header_drawer_small_first"
+      <com.xamarin.component.MaterialDrawer.Views.BezelImageView
+          android:id="@+id/account_header_drawer_small_first"
             android:layout_width="@dimen/material_drawer_account_header_secondary"
             android:layout_height="@dimen/material_drawer_account_header_secondary"
             android:layout_alignTop="@+id/account_header_drawer_current"
@@ -45,8 +45,8 @@
             app:biv_maskDrawable="@drawable/circle_mask"
             app:biv_selectorOnPress="@color/material_drawer_primary" />
 
-        <com.mikepenz.materialdrawer.view.BezelImageView
-            android:id="@+id/account_header_drawer_small_second"
+      <com.xamarin.component.MaterialDrawer.Views.BezelImageView
+          android:id="@+id/account_header_drawer_small_second"
             android:layout_width="@dimen/material_drawer_account_header_secondary"
             android:layout_height="@dimen/material_drawer_account_header_secondary"
             android:layout_alignTop="@+id/account_header_drawer_current"
@@ -60,8 +60,8 @@
             app:biv_maskDrawable="@drawable/circle_mask"
             app:biv_selectorOnPress="@color/material_drawer_primary" />
 
-        <com.mikepenz.materialdrawer.view.BezelImageView
-            android:id="@+id/account_header_drawer_small_third"
+      <com.xamarin.component.MaterialDrawer.Views.BezelImageView
+          android:id="@+id/account_header_drawer_small_third"
             android:layout_width="@dimen/material_drawer_account_header_secondary"
             android:layout_height="@dimen/material_drawer_account_header_secondary"
             android:layout_alignParentEnd="true"

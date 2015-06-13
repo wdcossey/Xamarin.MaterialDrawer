@@ -297,7 +297,7 @@ namespace com.xamarin.component.MaterialDrawer.Models
         _icon = (ImageView) view.FindViewById(Resource.Id.icon);
         _name = (TextView) view.FindViewById(Resource.Id.name);
         _description = (TextView) view.FindViewById(Resource.Id.description);
-        _switchView = (SwitchCompat) view.FindViewById(Resource.Id.switchView);
+        _switchView = view.FindViewById<SwitchCompat>(Resource.Id.switchView);
       }
 
       public View View

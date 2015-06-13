@@ -7,6 +7,8 @@ using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Util;
 using Android.Views;
+using com.xamarin.AndroidIconics;
+using com.xamarin.AndroidIconics.Typefaces;
 
 namespace com.xamarin.component.MaterialDrawer.Utils
 {
@@ -315,11 +317,11 @@ namespace com.xamarin.component.MaterialDrawer.Utils
       var textColor = GetThemeColorFromAttrOrRes(ctx, Resource.Attribute.material_drawer_primary_text,
         Resource.Color.material_drawer_primary_text);
       return
-        new IconicsDrawable(ctx, GoogleMaterial.Icon.gmd_person).Color(textColor)
-          .backgroundColorRes(Resource.Color.primary)
-          .iconOffsetYDp(2)
-          .paddingDp(2)
-          .sizeDp(56);
+        new IconicsDrawable<GoogleMaterial>(ctx, GoogleMaterial.Icon.gmd_person).Color(textColor)
+          .BackgroundColorRes(Resource.Color.primary)
+          .IconOffsetYDp(2)
+          .PaddingDp(2)
+          .SizeDp(56);
     }
 
 
@@ -360,7 +362,7 @@ namespace com.xamarin.component.MaterialDrawer.Utils
     {
       if (icon == null && iicon != null)
       {
-        icon = new IconicsDrawable(ctx, iicon).Color(iconColor).actionBarSize().paddingDp(1);
+        icon = new IconicsDrawable(ctx, iicon).Color(iconColor).ActionBarSize().PaddingDp(1);
       }
       else if (icon == null && iconRes > -1)
       {

@@ -28,10 +28,10 @@ namespace com.xamarin.component.MaterialDrawer.Models
     private bool _enabled = true;
     private Object _tag;
 
-    private Color _selectedColor = Color.Black;
+    private Color _selectedColor = Color.Transparent;
     private int _selectedColorRes = -1;
 
-    private Color _textColor = Color.Black;
+    private Color _textColor = Color.Transparent;
     private int _textColorRes = -1;
 
     private Typeface _typeface;

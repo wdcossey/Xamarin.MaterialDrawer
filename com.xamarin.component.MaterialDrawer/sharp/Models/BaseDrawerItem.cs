@@ -2,21 +2,458 @@ using System;
 using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.Views;
+using com.xamarin.AndroidIconics.Typefaces;
 using com.xamarin.component.MaterialDrawer.Models.Interfaces;
 using Object = Java.Lang.Object;
 
 namespace com.xamarin.component.MaterialDrawer.Models
 {
 
-  //public abstract class BaseDrawerItem : Java.Lang.Object, IDrawerItem
-  //{
-  //  public abstract int GetIdentifier();
-  //  public abstract Object GetTag();
-  //  public abstract bool IsEnabled();
-  //  public abstract string GetType();
-  //  public abstract int GetLayoutRes();
-  //  public abstract View ConvertView(LayoutInflater inflater, View convertView, ViewGroup parent);
-  //}
+  public abstract class BaseDrawerItem : Object, IDrawerItem, INameable, IIconable, ICheckable, ITagable,
+    IIdentifyable, ITypefaceable
+  {
+
+    private int _identifier = -1;
+    private int _iconRes = -1;
+    private int _selectedIconRes = -1;
+    private int _nameRes = -1;
+    private bool _enabled = true;
+    private bool _checkable = true;
+
+    private Color _selectedColor = Color.Transparent;
+    private int _selectedColorRes = -1;
+
+    private Color _textColor = Color.Transparent;
+    private int _textColorRes = -1;
+    private Color _selectedTextColor = Color.Transparent;
+    private int _selectedTextColorRes = -1;
+    private Color _disabledTextColor = Color.Transparent;
+    private int _disabledTextColorRes = -1;
+
+    private Color _iconColor = Color.Transparent;
+    private int _iconColorRes = -1;
+    private Color _selectedIconColor = Color.Transparent;
+    private int _selectedIconColorRes = -1;
+    private Color _disabledIconColor = Color.Transparent;
+    private int _disabledIconColorRes = -1;
+
+    public BaseDrawerItem()
+    {
+      IconTinted = false;
+      Typeface = null;
+    }
+
+    protected int Identifier
+    {
+      get { return _identifier; }
+      set { _identifier = value; }
+    }
+
+    protected Drawable Icon { get; set; }
+
+    protected int IconRes
+    {
+      get { return _iconRes; }
+      set { _iconRes = value; }
+    }
+
+    protected IIcon IIcon { get; set; }
+
+    protected Drawable SelectedIcon { get; set; }
+
+    protected int SelectedIconRes
+    {
+      get { return _selectedIconRes; }
+      set { _selectedIconRes = value; }
+    }
+
+    protected string Name { get; set; }
+
+    protected int NameRes
+    {
+      get { return _nameRes; }
+      set { _nameRes = value; }
+    }
+
+    protected Object Tag { get; set; }
+
+    protected bool Checkable
+    {
+      get { return _checkable; }
+      set { _checkable = value; }
+    }
+
+    protected bool Enabled
+    {
+      get { return _enabled; }
+      set { _enabled = value; }
+    }
+
+    protected Color SelectedColor
+    {
+      get { return _selectedColor; }
+      set { _selectedColor = value; }
+    }
+
+    protected int SelectedColorRes
+    {
+      get { return _selectedColorRes; }
+      set { _selectedColorRes = value; }
+    }
+
+    protected Color TextColor
+    {
+      get { return _textColor; }
+      set { _textColor = value; }
+    }
+
+    protected int TextColorRes
+    {
+      get { return _textColorRes; }
+      set { _textColorRes = value; }
+    }
+
+    protected Color SelectedTextColor
+    {
+      get { return _selectedTextColor; }
+      set { _selectedTextColor = value; }
+    }
+
+    protected int SelectedTextColorRes
+    {
+      get { return _selectedTextColorRes; }
+      set { _selectedTextColorRes = value; }
+    }
+
+    protected Color DisabledTextColor
+    {
+      get { return _disabledTextColor; }
+      set { _disabledTextColor = value; }
+    }
+
+    protected int DisabledTextColorRes
+    {
+      get { return _disabledTextColorRes; }
+      set { _disabledTextColorRes = value; }
+    }
+
+    protected Color IconColor
+    {
+      get { return _iconColor; }
+      set { _iconColor = value; }
+    }
+
+    protected int IconColorRes
+    {
+      get { return _iconColorRes; }
+      set { _iconColorRes = value; }
+    }
+
+    protected Color SelectedIconColor
+    {
+      get { return _selectedIconColor; }
+      set { _selectedIconColor = value; }
+    }
+
+    protected int SelectedIconColorRes
+    {
+      get { return _selectedIconColorRes; }
+      set { _selectedIconColorRes = value; }
+    }
+
+    protected Color DisabledIconColor
+    {
+      get { return _disabledIconColor; }
+      set { _disabledIconColor = value; }
+    }
+
+    protected int DisabledIconColorRes
+    {
+      get { return _disabledIconColorRes; }
+      set { _disabledIconColorRes = value; }
+    }
+
+    protected bool IconTinted { get; set; }
+
+    protected Typeface Typeface { get; set; }
+
+    public Color GetSelectedColor()
+    {
+      return SelectedColor;
+    }
+
+    public void SetSelectedColor(Color selectedColor)
+    {
+      SelectedColor = selectedColor;
+    }
+
+    public int GetSelectedColorRes()
+    {
+      return SelectedColorRes;
+    }
+
+    public void SetSelectedColorRes(int selectedColorRes)
+    {
+      SelectedColorRes = selectedColorRes;
+    }
+
+    public Color GetTextColor()
+    {
+      return TextColor;
+    }
+
+    public void SetTextColor(Color textColor)
+    {
+      TextColor = textColor;
+    }
+
+    public int GetTextColorRes()
+    {
+      return TextColorRes;
+    }
+
+    public void SetTextColorRes(int textColorRes)
+    {
+      TextColorRes = textColorRes;
+    }
+
+    public Color GetSelectedTextColor()
+    {
+      return SelectedTextColor;
+    }
+
+    public void SetSelectedTextColor(Color selectedTextColor)
+    {
+      SelectedTextColor = selectedTextColor;
+    }
+
+    public int GetSelectedTextColorRes()
+    {
+      return SelectedTextColorRes;
+    }
+
+    public void SetSelectedTextColorRes(int selectedTextColorRes)
+    {
+      SelectedTextColorRes = selectedTextColorRes;
+    }
+
+    public Color GetDisabledTextColor()
+    {
+      return DisabledTextColor;
+    }
+
+    public void SetDisabledTextColor(Color disabledTextColor)
+    {
+      DisabledTextColor = disabledTextColor;
+    }
+
+    public int GetDisabledTextColorRes()
+    {
+      return DisabledTextColorRes;
+    }
+
+    public void SetDisabledTextColorRes(int disabledTextColorRes)
+    {
+      DisabledTextColorRes = disabledTextColorRes;
+    }
+
+    public bool IsIconTinted()
+    {
+      return IconTinted;
+    }
+
+    public void SetIconTinted(bool iconTinted)
+    {
+      IconTinted = iconTinted;
+    }
+
+    public Object GetTag()
+    {
+      return Tag;
+    }
+
+    public void SetTag(Object tag)
+    {
+      Tag = tag;
+    }
+
+    public Drawable GetIcon()
+    {
+      return Icon;
+    }
+
+    public void SetIcon(Drawable icon)
+    {
+      Icon = icon;
+    }
+
+    public int GetIconRes()
+    {
+      return IconRes;
+    }
+
+    public void SetIconRes(int iconRes)
+    {
+      IconRes = iconRes;
+    }
+
+    public int GetSelectedIconRes()
+    {
+      return SelectedIconRes;
+    }
+
+    public void SetSelectedIconRes(int selectedIconRes)
+    {
+      SelectedIconRes = selectedIconRes;
+    }
+
+    public IIcon GetIIcon()
+    {
+      return IIcon;
+    }
+
+    //private @Override 
+    public void SetIIcon(IIcon iicon)
+    {
+      IIcon = iicon;
+    }
+
+    public Drawable GetSelectedIcon()
+    {
+      return SelectedIcon;
+    }
+
+    public void SetSelectedIcon(Drawable selectedIcon)
+    {
+      SelectedIcon = selectedIcon;
+    }
+
+    public string GetName()
+    {
+      return Name;
+    }
+
+    public void SetName(string name)
+    {
+      Name = name;
+      NameRes = -1;
+    }
+
+    public int GetNameRes()
+    {
+      return NameRes;
+    }
+
+    public void SetNameRes(int nameRes)
+    {
+      NameRes = nameRes;
+      Name = null;
+    }
+
+    public int GetIdentifier()
+    {
+      return Identifier;
+    }
+
+    public void SetIdentifier(int identifier)
+    {
+      Identifier = identifier;
+    }
+
+    //private @Override 
+    public bool IsEnabled()
+    {
+      return Enabled;
+    }
+
+    public new abstract string GetType();
+
+    public abstract int GetLayoutRes();
+
+    public abstract View ConvertView(LayoutInflater inflater, View convertView, ViewGroup parent);
+
+    //private @Override 
+    public bool IsCheckable()
+    {
+      return Checkable;
+    }
+
+    //private @Override 
+    public void SetCheckable(bool checkable)
+    {
+      Checkable = checkable;
+    }
+
+    public int GetDisabledIconColorRes()
+    {
+      return DisabledIconColorRes;
+    }
+
+    public void SetDisabledIconColorRes(int disabledIconColorRes)
+    {
+      DisabledIconColorRes = disabledIconColorRes;
+    }
+    
+    public Color GetDisabledIconColor()
+    {
+      return DisabledIconColor;
+    }
+
+    public void SetDisabledIconColor(Color disabledIconColor)
+    {
+      DisabledIconColor = disabledIconColor;
+    }
+
+    public int GetSelectedIconColorRes()
+    {
+      return SelectedIconColorRes;
+    }
+
+    public void SetSelectedIconColorRes(int selectedIconColorRes)
+    {
+      SelectedIconColorRes = selectedIconColorRes;
+    }
+
+    public Color GetSelectedIconColor()
+    {
+      return SelectedIconColor;
+    }
+
+    public void SetSelectedIconColor(Color selectedIconColor)
+    {
+      SelectedIconColor = selectedIconColor;
+    }
+
+    public int GetIconColorRes()
+    {
+      return IconColorRes;
+    }
+
+    public void SetIconColorRes(int iconColorRes)
+    {
+      IconColorRes = iconColorRes;
+    }
+
+    public Color GetIconColor()
+    {
+      return IconColor;
+    }
+
+    public void SetIconColor(Color iconColor)
+    {
+      IconColor = iconColor;
+    }
+
+    public Typeface GetTypeface()
+    {
+      return Typeface;
+    }
+
+    public void SetTypeface(Typeface typeface)
+    {
+      Typeface = typeface;
+    }
+  }
 
 
   /// <summary>
@@ -24,199 +461,167 @@ namespace com.xamarin.component.MaterialDrawer.Models
   /// <para>Original created by mikepenz on 03.02.15.</para>
   /// </summary>
   /// <typeparam name="T"></typeparam>
-  public abstract class BaseDrawerItem<T> : Java.Lang.Object, IDrawerItem, INameable<T>, IIconable<T>, ICheckable<T>, ITagable<T>,
+  public abstract class BaseDrawerItem<T> : BaseDrawerItem, INameable<T>, IIconable<T>, ICheckable<T>, ITagable<T>,
     IIdentifyable<T>, ITypefaceable<T>
+    where T : class 
   {
-
-    private int _identifier = -1;
-    private Drawable _icon;
-    private int _iconRes = -1;
-    private IIcon _iicon;
-    private Drawable _selectedIcon;
-    private int _selectedIconRes = -1;
-    private string _name;
-    private int _nameRes = -1;
-    private bool _enabled = true;
-    private bool _checkable = true;
-    private Object _tag;
-
-    private bool _iconTinted = false;
-
-    private Color _selectedColor = Color.Black;
-    private int _selectedColorRes = -1;
-
-    private Color _textColor = Color.Black;
-    private int _textColorRes = -1;
-    private Color _selectedTextColor = Color.Black;
-    private int _selectedTextColorRes = -1;
-    private Color _disabledTextColor = Color.Black;
-    private int _disabledTextColorRes = -1;
-
-    private Color _iconColor = Color.Black;
-    private int _iconColorRes = -1;
-    private Color _selectedIconColor = Color.Black;
-    private int _selectedIconColorRes = -1;
-    private Color _disabledIconColor = Color.Black;
-    private int _disabledIconColorRes = -1;
-
-    private Typeface _typeface = null;
 
     public T WithIdentifier(int identifier)
     {
-      this._identifier = identifier;
-      return (T)this;
+      Identifier = identifier;
+      return this as T;
     }
 
     public T WithIcon(Drawable icon)
     {
-      this._icon = icon;
-      return (T) this;
+      Icon = icon;
+      return this as T;
     }
 
     public T WithIcon(int iconRes)
     {
-      this._iconRes = iconRes;
-      return (T)this;
+      IconRes = iconRes;
+      return this as T;
     }
 
     public T WithIcon(IIcon iicon)
     {
-      this._iicon = iicon;
-      return (T)this;
+      IIcon = iicon;
+      return this as T;
     }
 
     public T WithSelectedIcon(Drawable selectedIcon)
     {
-      this._selectedIcon = selectedIcon;
-      return (T) this;
+      SelectedIcon = selectedIcon;
+      return this as T;
     }
 
     public T WithSelectedIcon(int selectedIconRes)
     {
-      this._selectedIconRes = selectedIconRes;
-      return (T) this;
+      SelectedIconRes = selectedIconRes;
+      return this as T;
     }
 
     public T WithName(string name)
     {
-      this._name = name;
-      this._nameRes = -1;
-      return (T) this;
+      Name = name;
+      NameRes = -1;
+      return this as T;
     }
 
     public T WithName(int nameRes)
     {
-      this._nameRes = nameRes;
-      this._name = null;
-      return (T) this;
+      NameRes = nameRes;
+      Name = null;
+      return this as T;
     }
 
-    public T WithTag(object @object) 
+    public T WithTag(Object @object) 
     {
-        this._tag = @object;
-        return (T) this;
+        Tag = @object;
+        return this as T;
     }
 
     public T WithCheckable(bool checkable)
     {
-      this._checkable = checkable;
-      return (T) this;
+      Checkable = checkable;
+      return this as T;
     }
 
     public T WithEnabled(bool enabled)
     {
-      this._enabled = enabled;
-      return (T) this;
+      Enabled = enabled;
+      return this as T;
     }
 
     public T SetEnabled(bool enabled)
     {
-      this._enabled = enabled;
-      return (T) this;
+      Enabled = enabled;
+      return this as T;
     }
 
     public T WithSelectedColor(Color selectedColor)
     {
-      this._selectedColor = selectedColor;
-      return (T) this;
+      SelectedColor = selectedColor;
+      return this as T;
     }
 
     public T WithSelectedColorRes(int selectedColorRes)
     {
-      this._selectedColorRes = selectedColorRes;
-      return (T) this;
+      SelectedColorRes = selectedColorRes;
+      return this as T;
     }
 
     public T WithTextColor(Color textColor)
     {
-      this._textColor = textColor;
-      return (T) this;
+      TextColor = textColor;
+      return this as T;
     }
 
     public T WithTextColorRes(int textColorRes)
     {
-      this._textColorRes = textColorRes;
-      return (T) this;
+      TextColorRes = textColorRes;
+      return this as T;
     }
 
     public T WithSelectedTextColor(Color selectedTextColor)
     {
-      this._selectedTextColor = selectedTextColor;
-      return (T) this;
+      SelectedTextColor = selectedTextColor;
+      return this as T;
     }
 
     public T WithSelectedTextColorRes(int selectedColorRes)
     {
-      this._selectedTextColorRes = selectedColorRes;
-      return (T) this;
+      SelectedTextColorRes = selectedColorRes;
+      return this as T;
     }
 
     public T WithDisabledTextColor(Color disabledTextColor)
     {
-      this._disabledTextColor = disabledTextColor;
-      return (T) this;
+      DisabledTextColor = disabledTextColor;
+      return this as T;
     }
 
     public T WithDisabledTextColorRes(int disabledTextColorRes)
     {
-      this._disabledTextColorRes = disabledTextColorRes;
-      return (T) this;
+      DisabledTextColorRes = disabledTextColorRes;
+      return this as T;
     }
 
     public T WithIconColor(Color iconColor)
     {
-      this._iconColor = iconColor;
-      return (T) this;
+      IconColor = iconColor;
+      return this as T;
     }
 
     public T WithIconColorRes(int iconColorRes)
     {
-      this._iconColorRes = iconColorRes;
-      return (T) this;
+      IconColorRes = iconColorRes;
+      return this as T;
     }
 
     public T WithSelectedIconColor(Color selectedIconColor)
     {
-      this._selectedIconColor = selectedIconColor;
-      return (T) this;
+      SelectedIconColor = selectedIconColor;
+      return this as T;
     }
 
     public T WithSelectedIconColorRes(int selectedColorRes)
     {
-      this._selectedIconColorRes = selectedColorRes;
-      return (T) this;
+      SelectedIconColorRes = selectedColorRes;
+      return this as T;
     }
 
     public T WithDisabledIconColor(Color disabledIconColor)
     {
-      this._disabledIconColor = disabledIconColor;
-      return (T) this;
+      DisabledIconColor = disabledIconColor;
+      return this as T;
     }
 
     public T WithDisabledIconColorRes(int disabledIconColorRes)
     {
-      this._disabledIconColorRes = disabledIconColorRes;
-      return (T) this;
+      DisabledIconColorRes = disabledIconColorRes;
+      return this as T;
     }
 
     /// <summary>
@@ -227,15 +632,15 @@ namespace com.xamarin.component.MaterialDrawer.Models
     /// <returns></returns>
     public T WithIconTintingEnabled(bool iconTintingEnabled)
     {
-      this._iconTinted = iconTintingEnabled;
-      return (T) this;
+      IconTinted = iconTintingEnabled;
+      return this as T;
     }
 
    [Obsolete]
     public T WithIconTinted(bool iconTinted)
     {
-      this._iconTinted = iconTinted;
-      return (T) this;
+      IconTinted = iconTinted;
+      return this as T;
     }
 
     /// <summary>
@@ -244,296 +649,15 @@ namespace com.xamarin.component.MaterialDrawer.Models
     /// <param name="iconTinted"></param>
     /// <returns></returns>
     [Obsolete]
-    public T WithTintSelectedIcon(bool iconTinted)
+   public T WithTintSelectedIcon(bool iconTinted)
     {
       return WithIconTintingEnabled(iconTinted);
     }
 
     public T WithTypeface(Typeface typeface)
     {
-      this._typeface = typeface;
-      return (T) this;
-    }
-
-    public Color GetSelectedColor()
-    {
-      return _selectedColor;
-    }
-
-    public void SetSelectedColor(Color selectedColor)
-    {
-      this._selectedColor = selectedColor;
-    }
-
-    public int GetSelectedColorRes()
-    {
-      return _selectedColorRes;
-    }
-
-    public void SetSelectedColorRes(int selectedColorRes)
-    {
-      this._selectedColorRes = selectedColorRes;
-    }
-
-    public Color GetTextColor()
-    {
-      return _textColor;
-    }
-
-    public void SetTextColor(Color textColor)
-    {
-      this._textColor = textColor;
-    }
-
-    public int GetTextColorRes()
-    {
-      return _textColorRes;
-    }
-
-    public void SetTextColorRes(int textColorRes)
-    {
-      this._textColorRes = textColorRes;
-    }
-
-    public Color GetSelectedTextColor()
-    {
-      return _selectedTextColor;
-    }
-
-    public void SetSelectedTextColor(Color selectedTextColor)
-    {
-      this._selectedTextColor = selectedTextColor;
-    }
-
-    public int GetSelectedTextColorRes()
-    {
-      return _selectedTextColorRes;
-    }
-
-    public void SetSelectedTextColorRes(int selectedTextColorRes)
-    {
-      this._selectedTextColorRes = selectedTextColorRes;
-    }
-
-    public Color GetDisabledTextColor()
-    {
-      return _disabledTextColor;
-    }
-
-    public void SetDisabledTextColor(Color disabledTextColor)
-    {
-      this._disabledTextColor = disabledTextColor;
-    }
-
-    public int GetDisabledTextColorRes()
-    {
-      return _disabledTextColorRes;
-    }
-
-    public void SetDisabledTextColorRes(int disabledTextColorRes)
-    {
-      this._disabledTextColorRes = disabledTextColorRes;
-    }
-
-    public bool IsIconTinted()
-    {
-      return _iconTinted;
-    }
-
-    public void SetIconTinted(bool iconTinted)
-    {
-      this._iconTinted = iconTinted;
-    }
-
-    public T WithTag(Object tag)
-    {
-      _tag = tag;
-      return (T)this;
-    }
-
-    public Object GetTag()
-    {
-      return _tag;
-    }
-    
-    public void SetTag(Object tag)
-    {
-      _tag = tag;
-    }
-
-    public Drawable GetIcon()
-    {
-      return _icon;
-    }
-
-    public void SetIcon(Drawable icon)
-    {
-      _icon = icon;
-    }
-
-    public int GetIconRes()
-    {
-      return _iconRes;
-    }
-
-    public void SetIconRes(int iconRes)
-    {
-      _iconRes = iconRes;
-    }
-
-    public int GetSelectedIconRes()
-    {
-      return _selectedIconRes;
-    }
-
-    public void SetSelectedIconRes(int selectedIconRes)
-    {
-      _selectedIconRes = selectedIconRes;
-    }
-
-    public IIcon GetIIcon()
-    {
-      return _iicon;
-    }
-
-    //private @Override 
-    public void SetIIcon(IIcon iicon)
-    {
-      _iicon = iicon;
-    }
-
-    public Drawable GetSelectedIcon()
-    {
-      return _selectedIcon;
-    }
-
-    public void SetSelectedIcon(Drawable selectedIcon)
-    {
-      _selectedIcon = selectedIcon;
-    }
-
-    public string GetName()
-    {
-      return _name;
-    }
-
-    public void SetName(string name)
-    {
-      _name = name;
-      _nameRes = -1;
-    }
-
-    public int GetNameRes()
-    {
-      return _nameRes;
-    }
-
-    public void SetNameRes(int nameRes)
-    {
-      _nameRes = nameRes;
-      _name = null;
-    }
-
-    public int GetIdentifier()
-    {
-      return _identifier;
-    }
-
-    public void SetIdentifier(int identifier)
-    {
-      this._identifier = identifier;
-    }
-
-    //private @Override 
-    public bool IsEnabled()
-    {
-      return _enabled;
-    }
-
-    public new abstract string GetType();
-    public abstract int GetLayoutRes();
-    public abstract View ConvertView(LayoutInflater inflater, View convertView, ViewGroup parent);
-
-    //private @Override 
-    public bool IsCheckable()
-    {
-      return _checkable;
-    }
-
-    //private @Override 
-    public void SetCheckable(bool checkable)
-    {
-      _checkable = checkable;
-    }
-
-    public int GetDisabledIconColorRes()
-    {
-      return _disabledIconColorRes;
-    }
-
-    public void SetDisabledIconColorRes(int disabledIconColorRes)
-    {
-      _disabledIconColorRes = disabledIconColorRes;
-    }
-
-    public Color GetDisabledIconColor()
-    {
-      return _disabledIconColor;
-    }
-
-    public void SetDisabledIconColor(Color disabledIconColor)
-    {
-      _disabledIconColor = disabledIconColor;
-    }
-
-    public int GetSelectedIconColorRes()
-    {
-      return _selectedIconColorRes;
-    }
-
-    public void SetSelectedIconColorRes(int selectedIconColorRes)
-    {
-      _selectedIconColorRes = selectedIconColorRes;
-    }
-
-    public Color GetSelectedIconColor()
-    {
-      return _selectedIconColor;
-    }
-
-    public void SetSelectedIconColor(Color selectedIconColor)
-    {
-      _selectedIconColor = selectedIconColor;
-    }
-
-    public int GetIconColorRes()
-    {
-      return _iconColorRes;
-    }
-
-    public void SetIconColorRes(int iconColorRes)
-    {
-      _iconColorRes = iconColorRes;
-    }
-
-    public Color GetIconColor()
-    {
-      return _iconColor;
-    }
-
-    public void SetIconColor(Color iconColor)
-    {
-      _iconColor = iconColor;
-    }
-
-    public Typeface GetTypeface()
-    {
-      return _typeface;
-    }
-
-    public void SetTypeface(Typeface typeface)
-    {
-      _typeface = typeface;
+      Typeface = typeface;
+      return this as T;
     }
   }
 }

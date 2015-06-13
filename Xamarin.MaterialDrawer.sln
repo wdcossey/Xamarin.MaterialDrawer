@@ -11,6 +11,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "com.xamarin.component.Mater
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "com.xamarin.materialdrawer.App", "com.xamarin.materialdrawer.App\com.xamarin.materialdrawer.App.csproj", "{85C4F8F5-EBCE-4EED-88BF-477FBB6355A6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Android.Iconics", "..\Xamarin.Android.Iconics\Xamarin.Android.Iconics\Xamarin.Android.Iconics.csproj", "{8121142E-6BDB-4536-B26A-C2FC2889C6E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Android.Iconics.GoogleMaterial", "..\Xamarin.Android.Iconics\Xamarin.Android.Iconics.GoogleMaterial\Xamarin.Android.Iconics.GoogleMaterial.csproj", "{3ADEA674-0C3A-45BE-AF0C-C510A5BB035A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencies", "{08B381A2-EE56-40A6-87A1-E82A968B9BBC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Android.Iconics.Shared", "..\Xamarin.Android.Iconics\Xamarin.Android.Iconics.Shared\Xamarin.Android.Iconics.Shared.csproj", "{907BE783-3E1C-447E-9C82-4BB60E2C1F2F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +35,18 @@ Global
 		{85C4F8F5-EBCE-4EED-88BF-477FBB6355A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{85C4F8F5-EBCE-4EED-88BF-477FBB6355A6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{85C4F8F5-EBCE-4EED-88BF-477FBB6355A6}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{8121142E-6BDB-4536-B26A-C2FC2889C6E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8121142E-6BDB-4536-B26A-C2FC2889C6E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8121142E-6BDB-4536-B26A-C2FC2889C6E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8121142E-6BDB-4536-B26A-C2FC2889C6E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3ADEA674-0C3A-45BE-AF0C-C510A5BB035A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3ADEA674-0C3A-45BE-AF0C-C510A5BB035A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3ADEA674-0C3A-45BE-AF0C-C510A5BB035A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3ADEA674-0C3A-45BE-AF0C-C510A5BB035A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{907BE783-3E1C-447E-9C82-4BB60E2C1F2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{907BE783-3E1C-447E-9C82-4BB60E2C1F2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{907BE783-3E1C-447E-9C82-4BB60E2C1F2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{907BE783-3E1C-447E-9C82-4BB60E2C1F2F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -34,5 +54,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{24B19BC7-782A-4184-9235-76367385EC6D} = {A1D7F8D0-EBD9-462A-BAB4-94D109514735}
 		{85C4F8F5-EBCE-4EED-88BF-477FBB6355A6} = {DAB32F47-427C-4837-8AE4-BEAC60F6AB70}
+		{8121142E-6BDB-4536-B26A-C2FC2889C6E9} = {08B381A2-EE56-40A6-87A1-E82A968B9BBC}
+		{3ADEA674-0C3A-45BE-AF0C-C510A5BB035A} = {08B381A2-EE56-40A6-87A1-E82A968B9BBC}
+		{907BE783-3E1C-447E-9C82-4BB60E2C1F2F} = {08B381A2-EE56-40A6-87A1-E82A968B9BBC}
 	EndGlobalSection
 EndGlobal

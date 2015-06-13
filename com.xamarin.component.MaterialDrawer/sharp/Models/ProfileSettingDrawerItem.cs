@@ -4,6 +4,8 @@ using Android.Graphics.Drawables;
 using Android.Net;
 using Android.Views;
 using Android.Widget;
+using com.xamarin.AndroidIconics;
+using com.xamarin.AndroidIconics.Typefaces;
 using com.xamarin.component.MaterialDrawer.Models.Interfaces;
 using com.xamarin.component.MaterialDrawer.Utils;
 using Java.Lang;
@@ -31,13 +33,13 @@ namespace com.xamarin.component.MaterialDrawer.Models
 
     private bool _iconTinted = false;
 
-    private Color _selectedColor = Color.Black;
+    private Color _selectedColor = Color.Transparent;
     private int _selectedColorRes = -1;
 
-    private Color _textColor = Color.Black;
+    private Color _textColor = Color.Transparent;
     private int _textColorRes = -1;
 
-    private Color _iconColor = Color.Black;
+    private Color _iconColor = Color.Transparent;
     private int _iconColorRes = -1;
 
     private Typeface _typeface = null;
@@ -426,7 +428,7 @@ namespace com.xamarin.component.MaterialDrawer.Models
       else if (GetIIcon() != null)
       {
         viewHolder.Icon.SetImageDrawable(
-          new IconicsDrawable(ctx, GetIIcon()).Color(iconColor).actionBarSize().paddingDp(2));
+          new IconicsDrawable(ctx, GetIIcon()).Color(iconColor).ActionBarSize().PaddingDp(2));
         viewHolder.Icon.Visibility = ViewStates.Visible;
       }
       else

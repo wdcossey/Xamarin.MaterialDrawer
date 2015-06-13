@@ -109,7 +109,9 @@
     <AndroidResource Include="Resources\drawable\circle_mask.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\values\attrs.xml" />
+    <AndroidResource Include="Resources\values\attrs.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\colors.xml" />
@@ -149,7 +151,20 @@
   <ItemGroup>
     <AndroidResource Include="Resources\values-v21\styles.xml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\Xamarin.Android.Iconics\Xamarin.Android.Iconics.GoogleMaterial\Xamarin.Android.Iconics.GoogleMaterial.csproj">
+      <Project>{3ADEA674-0C3A-45BE-AF0C-C510A5BB035A}</Project>
+      <Name>Xamarin.Android.Iconics.GoogleMaterial</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Xamarin.Android.Iconics\Xamarin.Android.Iconics.Shared\Xamarin.Android.Iconics.Shared.csproj">
+      <Project>{907BE783-3E1C-447E-9C82-4BB60E2C1F2F}</Project>
+      <Name>Xamarin.Android.Iconics.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Xamarin.Android.Iconics\Xamarin.Android.Iconics\Xamarin.Android.Iconics.csproj">
+      <Project>{8121142e-6bdb-4536-b26a-c2fc2889c6e9}</Project>
+      <Name>Xamarin.Android.Iconics</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

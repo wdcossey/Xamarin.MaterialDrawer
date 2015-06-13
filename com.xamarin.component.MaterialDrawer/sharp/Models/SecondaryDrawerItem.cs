@@ -11,7 +11,7 @@ namespace com.xamarin.component.MaterialDrawer.Models
   {
 
     private string _badge;
-    private Color _badgeTextColor = Color.Black;
+    private Color _badgeTextColor = Color.Transparent;
 
     public SecondaryDrawerItem WithBadge(string badge)
     {
